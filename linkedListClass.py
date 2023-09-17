@@ -33,7 +33,7 @@ class LinkedList:
         if self.length == 0:
             self.head = None
             self.tail = None
-        
+        return temp
     def print_lists(self):
         temp = self.head 
         while temp.next:
