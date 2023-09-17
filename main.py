@@ -1,6 +1,14 @@
 
 test = [1,2,3,5]
-for i in range(test[0], test[-1]+1):
-    if i not in test:
-        print(i)
-    
+
+l = 0 
+r = len(test) - 1
+
+while l < r:
+    mid = (l + r) // 2
+    if test[mid] == mid :
+        r = mid - 1
+    else :
+        l = mid + 1 
+    print(mid)
+    break
