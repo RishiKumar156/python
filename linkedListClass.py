@@ -55,7 +55,7 @@ class LinkedList:
         self.length -= 1
         if self.length == 0:
             self.tail = None
-
+        
     def print_lists(self):
         temp = self.head 
         while temp:

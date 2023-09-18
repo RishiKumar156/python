@@ -8,7 +8,7 @@ class LinkedList:
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node
-        self.length = 0
+        self.length = 1
     
     def append(self,value):
         new_node = Node(value)
@@ -52,17 +52,40 @@ class LinkedList:
         self.head = new_node
         self.length += 1
         
+    def Get(self,index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head 
+        lent = 0 
+        while temp:
+            if (lent == index):
+                print(f'Index entered is {index} & value is {temp.value}')
+            temp = temp.next
+            lent+=1
+    def set_value(self,index ,value):
+        temp = self.head 
+        lnt = 0 
+        while temp:
+            if lnt == index:
+                temp.value = value
+                print(f'Index entered is {index} & Updated value is {temp.value}')
+            temp = temp.next
+            lnt += 1
     def print_nodes(self):
         temp = self.head
         while temp:
             print(temp.value)
             temp = temp.next
             
-test = LinkedList(1)
+test = LinkedList(0)
+test.append(1)
 test.append(2)
-test.append(3)
+test.append(8)
 test.append(4)
-test.prepend(0)
-test.pop()
-test.pop_first()
-test.print_nodes()
+
+
+# test.pop()
+# test.pop_first()
+# test.print_nodes()
+test.Get(0)
+test.set_value(0,10)
