@@ -19,7 +19,7 @@ class LinkedList:
             self.tail.next = new_node
             self.tail = new_node
         self.length += 1
-        
+        return True
     def pop(self):
         temp = self.head 
         pre = temp
@@ -51,6 +51,7 @@ class LinkedList:
         new_node.next = self.head
         self.head = new_node
         self.length += 1
+        return True
         
     def Get(self,index):
         if index < 0 or index >= self.length:
@@ -60,8 +61,10 @@ class LinkedList:
         while temp:
             if (lent == index):
                 print(f'Index entered is {index} & value is {temp.value}')
+                return temp
             temp = temp.next
             lent+=1
+            
     def set_value(self,index ,value):
         temp = self.head 
         lnt = 0 
@@ -71,6 +74,21 @@ class LinkedList:
                 print(f'Index entered is {index} & Updated value is {temp.value}')
             temp = temp.next
             lnt += 1
+    
+    def insert1(self, index,value):
+        if index < 0 or index > self.length:
+            return None
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+        new_node = Node(value)
+        temp = self.Get(index -1)
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
+            
     def print_nodes(self):
         temp = self.head
         while temp:
@@ -88,4 +106,6 @@ test.append(4)
 # test.pop_first()
 # test.print_nodes()
 test.Get(0)
-test.set_value(0,10)
+test.set_value(0,0)
+test.insert1(3,9)
+test.print_nodes()
