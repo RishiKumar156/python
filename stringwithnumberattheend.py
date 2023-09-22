@@ -4,4 +4,15 @@ import re
 def findtheLenandFinalItemEquals(s):
     it = re.findall(r'\d+',s)
     alpha = 'abcdefghijklmnopqrstuvwxyz'
-    # upalpha
+    upalpha = alpha.upper()
+    k = ''
+    for i in s:
+        if i in upalpha or i in alpha:
+            k += i
+    
+    if len(k) == int(it[0]):
+        print(1)
+    else :
+        print(0)
+        
+findtheLenandFinalItemEquals('hello5')
