@@ -1,17 +1,14 @@
 
 
-def anagrampalindrome(s):
-    hashp = {}
+def isPossible(self, s):
+    hp = {}
     for i in s:
-        hashp[i] = hashp.get(i , 0) + 1
-    m = max(hashp , key = lambda x: hashp[x])
-    j = hashp.get(m)
-    c = 0
-    for v , k in hashp.items():
-        if k == 1:
+        hp[i] = hp.get(i ,0)+ 1
+    c = 0 
+    for k , v in hp.items():
+        if v % 2 != 0 :
             c += 1
         if c > 1:
-            return 'No'
-    return 'yes'
-
-print(anagrampalindrome('geeksforgeeks'))
+            return 0
+    return 1
+print(isPossible('geeksforgeeks'))
