@@ -1,5 +1,3 @@
-
-
 def returnthePeakElement(arr):
     h = {}
     for i in range(len(arr)):
