@@ -1,10 +1,13 @@
 
 
-def wrongball(s):
+def countWrongPlacedBalls(s):
+    # code here
     c = 0
-    for i in range(len(s)-1):
-        if s[i] == 'R' and s[i +1] == 'R' or s[i] == 'B' and s[i + 1] == 'B':
+    for i in range(len(s)):
+        if s[i] == 'R' and i % 2 != 0:
+            c += 1
+        elif s[i] == 'B' and i % 2 == 0:
             c += 1
     return c
 
-print(wrongball('BBBBRBR'))
+print(countWrongPlacedBalls('RBRB'))
