@@ -49,7 +49,7 @@ class LinkedList():
         self.tail = pvt
         self.tail.pointer = None
         self.length -= 1
-        return ct.data
+        return True
     
     def ppf(self):
         if self.length == 0:
@@ -66,21 +66,33 @@ class LinkedList():
         ct = self.head
         for _ in range(index):
             ct = ct.pointer
-        return ct.data
+        return ct
 
     def set_node_data(self, index , data):
         if index < 0 or index >= self.length:
             return None
-        ct = self.head
-        for _ in range(index):
-            ct = ct.pointer
+        ct = self.get_node(index)
         ct.data = data
-        return ct.data
+        return ct
     
-
+    def insert_data(self , index , data):
+        if index < 0 or index >= self.length :
+            return None
+        if index == 0:
+            return self.prepend_node(data)
+        if index == self.length:
+            return self.add_node(data)
+        cn = Node(data)
+        find_node = self.get_node(index-1)
+        cn.pointer = find_node.pointer
+        find_node.pointer = cn
+        self.length += 1
+        return True
+    
 mynode = LinkedList(678)
 mynode.add_node(90)
 mynode.prepend_node(786)
+mynode.insert_data(1 , 567)
 print(f'Pop first node is {mynode.ppf()}')
 mynode.print_node()
-print(f'Get node is index {mynode.set_node_data(0, 786)}')
+# print(f'Get node is index {mynode.set_node_data(0, 786)}')
