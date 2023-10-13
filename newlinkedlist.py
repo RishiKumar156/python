@@ -71,7 +71,19 @@ class LinkedList():
         for _ in range(index):
             temp = temp.pointer
         return temp.data
+    
+    def set_data(self , index, data):
+        if index < 0 or index >= self.length :
+            return None
+        current_datas = self.head 
+        for _ in range(index):
+            current_datas = current_datas.pointer
+        current_datas.data = data
+        return current_datas.data
 
 mynode = LinkedList(908)
+mynode.set_data(0 , 786)
+mynode.add_node(987)
 # mynode.get_node(0)
-print(f'The found node is {mynode.get_node(0)}')
+# print(f'The found node is {mynode.get_node(0)}')
+mynode.print_nodes()
