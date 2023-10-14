@@ -1,44 +1,46 @@
-class Node():
-    def __init__(self , data):
+class Nodes():
+    def __init__(self, data):
         self.data = data 
         self.pointer = None
-    
+
 class LinkedList():
     def __init__(self, data):
-        create_node = Node(data)
+        create_node = Nodes(data)
         self.head = create_node
         self.tail = create_node
         self.length = 1
-        
-    def print_nodes(self):
-        t = self.head 
-        while t:
-            print(t.data)
-            t = t.pointer
     
-    def prepend(self , data):
-        create_node = Node(data)
+    def print_nodes(self):
+        current_node = self.head
+        while current_node is not None:
+            print(current_node.data)
+            current_node = current_node.pointer
+    
+    def add_node_at_first(self, data):
+        create_node = Nodes(data)
         if self.head is None:
             self.head = create_node
             self.tail = create_node
-        create_node.pointer = self.head
-        self.head = create_node
+        else:
+            create_node.pointer = self.head
+            self.head = create_node
         self.length += 1
-        return True
-
+        return create_node
+    
     def add_node(self , data):
-        create_node = Node(data)
-        if self.length == 0 or self.head is None:
+        create_node = Nodes(data)
+        if self.head is None:
             self.head = create_node
             self.tail = create_node
-        total_nodes = self.head
-        while total_nodes.pointer is not None:
-            total_nodes = total_nodes.pointer
-        total_nodes.pointer = create_node
-        self.length+= 1
-        return True
+        else:
+            total_nodes = self.head
+            while total_nodes.pointer is not None:
+                total_nodes = total_nodes.pointer
+            total_nodes.pointer = create_node
+            self.length += 1
+        return create_node
     
-    def get_node(self , index):
+    def get_nodes(self , index):
         if index < 0 or index >= self.length:
             return None
         total_nodes = self.head
@@ -46,62 +48,64 @@ class LinkedList():
             total_nodes = total_nodes.pointer
         return total_nodes
     
-    def set_nodes_data(self, index, data):
+    def set_nodes_data(self, data, index):
         if index < 0 or index >= self.length:
-            find = self.get_node(index)
-            find.data = data
-        return find
-    
-    def pp(self):
-        if self.length < 0:
             return None
-        total_nodes = self.head 
-        previous_nodes = total_nodes
+        findnode = self.get_nodes(index)
+        findnode.data = data
+        return findnode
+
+    def pp(self):
+        if self.length == 0:
+            return None
+        total_nodes = self.head
+        previous_node = total_nodes
         while total_nodes.pointer is not None:
-            previous_nodes = total_nodes
-            total_nodes  = total_nodes.pointer
-        self.tail = previous_nodes
+            previous_node = total_nodes
+            total_nodes = total_nodes.pointer
+        self.tail = previous_node
         self.tail.pointer = None
         self.length -= 1
-        if self.length == 0:
-            self.tail = None
         return total_nodes
     
     def ppf(self):
-        if self.length < 0:
-            return None
-        first_item = self.head
-        self.head = self.head.pointer
-        first_item.pointer = None
-        self.length -= 1
         if self.length == 0:
-            self.tail = None
-        return first_item
-
-    def insert_node(self , index , data):
-        if index < 0 or index > self.length:
             return None
-        if index == 0:
-            return self.prepend(data)
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        first_node = self.head
+        self.head = first_node.pointer
+        first_node.pointer = None 
+        self.length -= 1
+        return first_node
+    
+    def insert_node(self , index , data):
+        create_node = Nodes(data)
+        if index < 0 or index >= self.length:
+            return None
+        if self.length == 0:
+            return self.add_node_at_first(data)
         if index == self.length:
             return self.add_node(data)
-        create_node = Node(data)
-        find_prev = self.get_node(index -1)
-        create_node.pointer = find_prev.pointer
-        find_prev.pointer = create_node
+        previous_node = self.get_nodes(index-1)
+        create_node.pointer = previous_node.pointer
+        previous_node.pointer = create_node
         self.length += 1
         return create_node
     
-    def remove_node(self , index):
-        if index < 0 or index > self.length:
-            return None
-        if self.length == index :
-            return self.pp()
-        if self.length == 0:
+    def remove_node(self, index):
+        if index == 0:
             return self.ppf()
-        prev = self.get_node(index-1)
-        prev.pointer = None 
-        next = self.get_node(index+1)
-        prev.pointer = next
-        return True
-                
+        if index == self.length:
+            return self.pp()
+        if index < 0:
+            return None
+        if index == 1 and self.length == 1:
+            self.head = None
+            self.tail = None
+        previous_node = self.get_nodes(index-1)
+        given_node = previous_node.pointer
+        previous_node.pointer = given_node.pointer
+        self.length -= 1
+        return after_node
