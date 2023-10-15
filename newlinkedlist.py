@@ -106,13 +106,19 @@ class LinkedList():
     
     def reverse(self):
         temp = self.head 
-        before = None 
-        after = temp.pointer 
-        self.tail = self.head 
-        
+        self.head = self.tail 
+        self.tail = temp 
+        before = None  
         for _ in range(self.length):
-            after = temp.pointer
-            temp.pointer = before 
-            before = temp 
-            temp = after 
+            after = temp.pointer #keep the track of current item 
+            temp.pointer = before # choosing the value 
+            before = temp # changing in to None 
+            temp = after  # using the track moving on for next item 
         return temp 
+    
+mynode = LinkedList(1)
+mynode.append(2)
+mynode.append(3)
+mynode.append(4)
+mynode.reverse()
+mynode.print_nodes()
