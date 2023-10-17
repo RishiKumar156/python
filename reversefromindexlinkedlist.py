@@ -70,5 +70,3 @@ linked_list.print_nodes()
 
 # Reverse a sublist within the linked list
 linked_list.reverse_between(2, 4)
-print("Reversed sublist (2, 4): ")
-linked_list.print_nodes()
