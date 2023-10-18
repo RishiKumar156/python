@@ -1,6 +1,6 @@
 class Node():
     def __init__(self, data) -> None:
-        self.data = data 
+        self.data = data
         self.pointer = None 
 
 class LinkedList():
@@ -8,65 +8,60 @@ class LinkedList():
         create_node = Node(data)
         self.head = create_node
         self.length = 1
-        
+    
     def append(self, data):
         create_node = Node(data)
         if not self.head:
             self.head = create_node
         else:
-            temp = self.head 
-            while temp.pointer:
-                temp = temp.pointer
-            temp.pointer = create_node
+            tt = self.head 
+            while tt.pointer:
+                tt = tt.pointer
+            tt.pointer = create_node
         self.length += 1
-        
-    def print_nodes(self):
-        temp = self.head 
-        while temp:
-            print(temp.data)
-            temp = temp.pointer
+        return create_node
     
-    def reverse_between(self, start , end): 
-        first_node = self.head 
-        middle_node = None 
-        for _ in range(start-1):
-            first_node = first_node.pointer
-        temp = first_node
-        first_node.pointer = None 
+    def print_nodes(self):
+        if not self.head:
+            return None 
+        else:
+            tt = self.head 
+            while tt.pointer:
+                print(tt.data)
+                tt = tt.pointer
+        return True
+    
+    def reverse_the_nodes(self, start, end):
+        if start < self.length and end > self.length:
+            return None 
+
+        node_one = None 
+        node_two = None 
+        node_three = None
+        current = self.head 
+        index = 1 
+        while current:
+            if index <= start:
+                node_one = current
+                print(f'From node one {index}')
+            # while node_one:
+            #     print(f'From node one {node_one.data}')
+            #     node_one = node_one.data
+            if index > start and  index <= end :
+                node_two  = current 
+                print(f'From node two {index, node_two.data}')
+            if index > end:
+                node_three = current
+                print(f'From node three {index, node_three.data}')
+            current = current.pointer 
+            index += 1
         
-        middle_node = temp
-        for _ in range(start , end-1):
-            middle_node = middle_node.pointer
-        third_node = middle_node
-        middle_node.pointer = None 
-        
-        prev = None 
-        while middle_node.pointer:
-            next_node = middle_node.pointer 
-            middle_node.pointer = prev 
-            prev = middle_node
-            middle_node = next_node
-        
-        last_node_first_set = temp
-        while last_node_first_set.pointer:
-            last_node_first_set = last_node_first_set.pointer
-        last_node_first_set.pointer = prev 
-        
-        last_node_reversed_middle = prev 
-        while last_node_reversed_middle.pointer:
-            last_node_reversed_middle = last_node_reversed_middle.pointer
-        last_node_reversed_middle.pointer = third_node
-        return temp
-        
-        
+
+
 linked_list = LinkedList(1)
 linked_list.append(2)
 linked_list.append(3)
 linked_list.append(4)
 linked_list.append(5)
-
-print("Original linked list: ")
-linked_list.print_nodes()
-
-# Reverse a sublist within the linked list
-linked_list.reverse_between(2, 4)
+linked_list.reverse_the_nodes(2, 4)
+# linked_list.print_nodes()
