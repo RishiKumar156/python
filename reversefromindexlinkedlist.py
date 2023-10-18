@@ -35,26 +35,33 @@ class LinkedList():
         if start < self.length and end > self.length:
             return None 
 
-        node_one = None 
-        node_two = None 
+        node_one = None
+        node_two = None
         node_three = None
-        current = self.head 
-        index = 1 
+
+        current = self.head
+        index = 1
+
         while current:
             if index <= start:
                 node_one = current
                 print(f'From node one {index}')
-            # while node_one:
-            #     print(f'From node one {node_one.data}')
-            #     node_one = node_one.data
-            if index > start and  index <= end :
-                node_two  = current 
+            node_one.pointer = None
+            while node_one:
+                print(node_one.data)
+                node_one = node_one.pointer
+            
+            if index > start and index <= end:
+                node_two = current
                 print(f'From node two {index, node_two.data}')
             if index > end:
                 node_three = current
                 print(f'From node three {index, node_three.data}')
-            current = current.pointer 
+            current = current.pointer
             index += 1
+
+# Now you can access node_one, node_two, and node_three outside the loop
+
         
 
 
