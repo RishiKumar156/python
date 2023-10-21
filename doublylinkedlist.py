@@ -44,8 +44,20 @@ class DoublyLinkedList():
         self.length -= 1
         return temp
     
-mynode = DoublyLinkedList(1)
-mynode.append_node(2)
+    def prepend(self,data):
+        create_node = Node(data)
+        if not self.head:
+            self.head = create_node
+            self.tail = create_node
+        create_node.next = self.head 
+        self.head.prev = create_node
+        self.head = create_node
+        self.length += 1
+        return create_node
+    
+mynode = DoublyLinkedList(8)
+mynode.append_node(6)
 mynode.append_node(3)
+mynode.prepend(7)
 mynode.pop()
 mynode.print_nodes()
