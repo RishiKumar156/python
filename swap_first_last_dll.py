@@ -11,10 +11,13 @@ class LinkedList:
         self.tail = create_node
         self.length = 1
     
-    def reverse_nodes(self):
+    def reverse_first_last_nodes_value(self):
         if self.length == 0:
             return None 
         if self.length == 1:
             return None 
         self.head.value , self.tail.value = self.tail.value , self.head.value
-        return self.head 
+        return self.head
+    
+    def reverse_list_nodes(self):
+        current = self.head 
