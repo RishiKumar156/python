@@ -28,17 +28,18 @@ class Queue:
     def dequeue (self):
         if self.length == 0:
             return None 
+        temp = self.first
+        if self.length == 1:
+            self.first = None 
+            self.last = None 
         else:
-            temp = self.first
             self.first = self.first.next 
             temp.next = None 
             self.length -=1 
-            if self.length == 0:
-                self.first = None 
-                self.tail = None 
-            k = print(f'Remove value is {temp.value}')
-        return k
+        return temp
 myqueue = Queue(3)
 myqueue.enqueue(4)
-myqueue.dequeue()
-myqueue.print_nodes()
+print(myqueue.dequeue())
+print(myqueue.dequeue())
+print(myqueue.dequeue())
+# myqueue.print_nodes()
