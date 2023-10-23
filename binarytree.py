@@ -38,8 +38,6 @@ class BinarySearchTree:
         return False 
                     
                     
-
-
 def check(expect, actual, message):
     print(message)
     print("EXPECTED:", expect)
