@@ -8,6 +8,12 @@ class HastTable:
             my_hash = (my_hash + ord(letters) * 23) % len(self.data_map)
         return my_hash
     
+    def set_item(self, key , value):
+        index = self._hash(key)
+        if not self.data_map:
+            self.data_map[index] = []
+        self.data_map[index].append([key,value])
+        
     def print_maps(self):
         for i , j in enumerate(self.data_map):
             print(i , ':' , j)
