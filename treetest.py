@@ -12,34 +12,33 @@ class BinarySearchTree:
         new_node = Node(value)
         if not self.root:
             self.root = new_node
-            return True 
         temp = self.root 
         while True:
             if new_node.value == temp.value:
-                return False
-            if new_node.value < temp.value:
-                if not temp.left :
-                    temp.left = new_node
-                    return True 
-                temp = temp.left 
-            else:
+                return False 
+            if new_node.value > temp.value:
                 if not temp.right:
                     temp.right = new_node
                     return True 
                 temp = temp.right 
-        
+            else:
+                if not temp.left:
+                    temp.left = new_node
+                    return True
+                temp = temp.left
+    
     def contains(self,value):
         temp = self.root 
         while temp:
             if value > temp.value:
                 temp = temp.right 
             elif value < temp.value:
-                temp = temp.left
+                temp = temp.left 
             else:
                 return True 
-        return False 
-                    
-                    
+        return False
+    
+    
 def check(expect, actual, message):
     print(message)
     print("EXPECTED:", expect)
@@ -94,4 +93,3 @@ result = bst.contains(12)
 check(True, result, "Check if 12 exists:")
 result = bst.contains(20)
 check(True, result, "Check if 20 exists:")
-
