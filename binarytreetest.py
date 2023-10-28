@@ -26,16 +26,31 @@ class BinarySearchTree:
                 if not temp.left :
                     temp.left = new_node
                 temp = temp.left 
-    
-    def __r_contains(self, value):
-        temp = self.root
-        if value < temp.value:
-            temp = temp.left 
+                
+    def __r_contains(self, temp ,value):
+        if temp.value == None or not temp.value:
+            return False  
+        if temp.value == value:
+            return True
         if value > temp.value:
-            temp = temp.right
+            """If value does not matched then move to next value 
+            if condition we check wether the value is greater than
+            the temp value if so then we pass the temp.right (Means right node of the
+            temp value that's what appening)
+                   (3)
+                  /   \
+                (1)    (4)
+                        \
+                        (5)
+"""
+            return self.__r_contains(temp.right,value) 
+        if value < temp.value:
+            """Here we check the value is lesser than the value then we just pass the temp.left node
+            to the recursive opereation."""
+            return self.__r_contains(temp.left , value)
     
-    def _r_contains(self,value):
-
+    def r_contain(self,value):
+        return self.__r_contains(self.root, value)
 mytree = BinarySearchTree()
 mytree._insert(3)
 mytree._insert(4)
