@@ -46,10 +46,7 @@ class BinarySearchTree:
             self.root = new_node
             return
         if new_node.value > temp.value:
-            if not temp.right:
-                temp.right = new_node
-                return
-            temp = temp.right 
+            return self.__r_insert(temp.right, value)
         else:
             if not temp.left:
                 temp.left = new_node
