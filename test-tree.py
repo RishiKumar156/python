@@ -63,17 +63,29 @@ class BinarySearchTree:
     
     def BFS(self):
         current_node = self.root 
-        qeue = []
+        queue = []
         result = []
-        qeue.append(current_node)
-        while len(qeue) > 0:
-            current_node = qeue.pop(0)
+        queue.append(current_node)
+        while len(queue) > 0:
+            current_node = queue.pop(0)
             result.append(current_node.value)
             if current_node.left:
-                qeue.append(current_node.left)
+                queue.append(current_node.left)
             if current_node.right:
-                qeue.append(current_node.right)
+                queue.append(current_node.right)
         return result
+
+    def dfs_pre_order(self):
+        result = []
+        def traverse(current_node):
+            result.append(current_node.value)
+            if current_node.left:
+                traverse(current_node.left)
+            if current_node.right:
+                traverse(current_node.right)
+        traverse(self.root)
+        return result
+    
 mynode = BinarySearchTree()
 mynode.insert(5)
 mynode.insert(45)
@@ -81,3 +93,4 @@ mynode.insert(3)
 print(mynode.contains(3))
 print(f'BFS{mynode.BFS()}')
 print(mynode.root.right.value)
+print(mynode.dfs_pre_order())
