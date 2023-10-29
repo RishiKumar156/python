@@ -86,6 +86,17 @@ class BinarySearchTree:
         traverse(self.root)
         return result
     
+    def dfs_inorder(self):
+        result = []
+        def traverse(current_node):
+            if current_node.left:
+                traverse(current_node.left)
+            result.append(current_node.value)
+            if current_node.right:
+                traverse(current_node.right)
+        traverse(self.root)
+        return result
+    
 mynode = BinarySearchTree()
 mynode.insert(5)
 mynode.insert(45)
