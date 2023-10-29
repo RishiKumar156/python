@@ -3,40 +3,81 @@ class Node:
         self.value = value
         self.left = None 
         self.right = None 
+
 class BinarySearchTree:
     def __init__(self) -> None:
         self.root = None 
     
-    def _insert(self, temp ,value):
+    def r_insert(self,temp,value):
         if not temp:
             return Node(value)
+        if temp.value == value:
+            return False 
         if value > temp.value:
-            temp.right = self._insert(temp.right, value)
+            temp.right = self.r_insert(temp.right, value)
         if value < temp.value:
-            temp.left = self._insert(temp.left, value)
+            temp.left = self.r_insert(temp.left, value)
         return temp
     
-    def _r_insert(self,value):
+    def insert(self, value):
         if not self.root:
             self.root = Node(value)
-        return self._insert(self.root,value)
+        return self.r_insert(self.root, value)
     
-    def _r_contains(self,temp,value):
+    def r_contains(self,temp,value):
         if not temp:
             return False 
         if temp.value == value:
-            return True
+            return True 
         if value > temp.value:
-            return self._r_contains(temp.right, value)
+            return self.r_contains(temp.right,value)
         if value < temp.value:
-            return self._r_contains(temp.left, value)
+            return self.r_contains(temp.left,value)
     
     def contains(self,value):
-        return self._r_contains(self.root , value)
-
+        return self.r_contains(self.root, value)
+    
+    ## WRITE DELETE_NODE METHODS HERE ##
+    def __delete_node(self,temp,value):
+        if not temp:
+            return None 
+        if value < temp.value:
+            temp.left = self.__delete_node(temp.left, value)
+        elif value > temp.value:
+            temp.right = self.__delete_node(temp.right,value)
+        else:
+            if not temp.left and not temp.right:
+                return None 
+            elif not temp.left:
+                temp = temp.right 
+            elif not temp.right:
+                temp = temp.left 
+            else:
+                find_min = self.min_value(temp.right)
+                temp.value = find_min 
+                temp.right = self.__delete_node(temp.right, find_min)
+            return temp
+    
+    def delete_node(self,value):
+        return self.__delete_node(self.root,value)
+    
+    def BFS(self):
+        current_node = self.root 
+        qeue = []
+        result = []
+        qeue.append(current_node)
+        while len(qeue) > 0:
+            current_node = qeue.pop(0)
+            result.append(current_node.value)
+            if current_node.left:
+                qeue.append(current_node.left)
+            if current_node.right:
+                qeue.append(current_node.right)
+        return result
 mynode = BinarySearchTree()
-mynode._r_insert(5)
-mynode._r_insert(3)
-mynode._r_insert(786)
+mynode.insert(5)
+mynode.insert(45)
+mynode.insert(3)
+print(mynode.contains(3))
+print(f'BFS{mynode.BFS()}')
 print(mynode.root.right.value)
-print(mynode.contains(7861))
