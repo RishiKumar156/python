@@ -40,7 +40,8 @@ class LinkedList():
             self.tail = create_node
         self.length += 1
         return create_node.data
-    """Need to follow the same steps for find the middle one in the node onluy change is that
+    
+    """Need to follow the same steps for find the middle one in the node only change is that
     wether there are same if there are then we are having a loop inside of it"""
     def hash_loop(self):
         if not self.head:
