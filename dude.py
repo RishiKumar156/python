@@ -13,8 +13,15 @@ def check_the_strak(box1,box2):
         if v >=2 :
             print(k,v)
     return True
+# print(check_the_strak(box1, box2))
 
-
-
-
-print(check_the_strak(box1, box2))
+def sum_of_the_two_value(arr, sum):
+    table = {}
+    for i in range(len(arr)):
+        s = sum - arr[i]
+        if s in table:
+            return table[s] , arr[i] , table
+        table[arr[i]] = arr[i]
+    return table
+print(sum_of_the_two_value([6,4,3,2,1,7], 9))
+print(sum_of_the_two_value([1,2,4,4], 8))
