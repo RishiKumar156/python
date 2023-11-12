@@ -1,5 +1,5 @@
-box1 = ['a', 'b', 'c' , 'r', 'e']
-box2 = ['a', 'b', 'c', 'r', 't']
+box1 = ['a', 3, 'c' , 'r', 'e']
+box2 = ['a', 3, 'c', 'r', 't']
 
 def check_the_strak(box1,box2):
     hash_table = {}
