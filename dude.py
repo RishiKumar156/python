@@ -37,6 +37,7 @@ print(reverse_string(''))
 
 def merge_sorting(grp1, grp2):
     j = grp1 + grp2
+    
     return sorted(j)
 
 print(merge_sorting([1,3,5], [2,4,6]))
