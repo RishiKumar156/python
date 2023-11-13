@@ -26,3 +26,11 @@ def sum_of_the_two_value(arr, sum):
 print(sum_of_the_two_value([6,4,3,2,1,7], 9))
 print(sum_of_the_two_value([1,2,4,4], 8))
 print(sum_of_the_two_value([1,2,4,4], 16))
+
+
+def reverse_string(item):
+    if not item:
+        return False
+    return item[::-1] 
+
+print(reverse_string(''))
