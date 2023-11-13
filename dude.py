@@ -22,6 +22,7 @@ def sum_of_the_two_value(arr, sum):
         if s in table:
             return table[s] , arr[i] , table
         table[arr[i]] = arr[i]
-    return table
+    return False
 print(sum_of_the_two_value([6,4,3,2,1,7], 9))
 print(sum_of_the_two_value([1,2,4,4], 8))
+print(sum_of_the_two_value([1,2,4,4], 16))
