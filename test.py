@@ -146,3 +146,9 @@ mynode.add_node(3)
 mynode.add_node(4)
 mynode.reversenodeofkth(1)
 # mynode.print_nodes()
+
+
+def hammingWeight(n) -> int:
+    n = n.count(1)
+    return n 
+print(f'{hammingWeight("00000000000000000000000000001011")}')
