@@ -148,7 +148,21 @@ mynode.reversenodeofkth(1)
 # mynode.print_nodes()
 
 
-def hammingWeight(n) -> int:
-    n = n.count(1)
-    return n 
-print(f'{hammingWeight("00000000000000000000000000001011")}')
+# def hammingWeight(n) -> int:
+#     n = n.count(1)
+#     return n 
+# print(f'{hammingWeight("00000000000000000000000000001011")}')
+
+def intersect(nums1, nums2):
+    ht = {}
+    for i in nums1:
+        ht[i] = ht.get(i , 0) + 1
+    rt = []
+    for i in nums2:
+        if i in ht:
+            if ht.get(i) > 0:
+                ht[i] -= 1
+                rt.append(i)
+    return rt
+
+print(intersect([1,2,2,1] , [2,2]))
